@@ -85,6 +85,17 @@ History:
 			<xs:pattern value="[B-Z-[EIOU]][B-Z-[EIO]][B-Z-[OU]][A-Z]"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="subBrandType">
+		<xs:annotation>
+			<xs:documentation source="http://www.regular-expressions.info/xmlcharclass.html">
+				Ideally four uppercase chars without vowels but legacy included some vowels so we
+				exclude just the ones necessary for each character position.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[B-Z-[EIOU]][B-Z-[EIO]][B-Z-[OU]][A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="idType">
 		<xs:restriction base="xs:positiveInteger"/>
 	</xs:simpleType>
@@ -215,6 +226,7 @@ History:
 		<xs:simpleContent>
 			<xs:extension base="partNumberBaseType">
 				<xs:attribute name="BrandAAIAID" type="brandType"/>
+				<xs:attribute name="SubBrandAAIAID" type="subBrandType"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>

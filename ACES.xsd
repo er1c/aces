@@ -150,7 +150,11 @@
 	</xs:complexType>
 	<xs:complexType name="assetType">
 		<xs:complexContent>
-			<xs:extension base="appItemsBaseType"/>
+			<xs:extension base="appItemsBaseType">
+				<xs:sequence>
+					<xs:element ref="AssetName" minOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="noteType">
@@ -232,11 +236,7 @@
 	<xs:complexType name="yearRangeType">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="from" use="required">
-					<xs:simpleType>
-						<xs:restriction base="yearType"/>
-					</xs:simpleType>
-				</xs:attribute>
+				<xs:attribute name="from" type="yearType" use="required"/>
 				<xs:attribute name="to" type="yearType" use="required"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -321,17 +321,7 @@
 	<!-- element definitions  -->
 	<xs:element name="App" type="appType"/>
 	<xs:element name="Aspiration" type="vehAttrType"/>
-	<xs:element name="Asset">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="assetType">
-					<xs:sequence>
-						<xs:element ref="AssetName"/>
-					</xs:sequence>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+	<xs:element name="Asset" type="assetType"/>
 	<xs:element name="AssetItemOrder" type="xs:positiveInteger"/>
 	<xs:element name="AssetItemRef" type="xs:string"/>
 	<xs:element name="AssetName" type="assetNameType"/>
